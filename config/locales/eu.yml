@@ -1,0 +1,33 @@
+eu:
+  census_authorization_handler:
+    invalid_document: Documento de identidad invalido
+    invalid_postal_code: Código postal invalido
+    invalid_date_of_birth: Fecha de nacimiento invalida
+    invalid_something: Ha ocurrido algún error, contacte con participacionciudadana@pamplona.es
+  census_authorization:
+    form:
+      scope_prompt: Por favor, selecciona tu distrito
+      date_select:
+        day: "Día"
+        month: "Mes"
+        year: "Año"
+  activemodel:
+    attributes:
+      census_authorization_handler:
+        document_number: Número de documento
+        document_type: Tipo de documento
+        postal_code: Código postal
+        date_of_birth: Fecha de nacimiento
+        scope_id: Distrito desde el que desea participar
+  decidim:
+    authorization_handlers:
+      census_authorization_handler:
+        name: "registro del Padrón"
+    census_authorization_handler:
+        document_types:
+          dni: "DNI"
+          nie: "NIE"
+          passport: "Pasaporte"
+    admin:
+      menu:
+        participatory_process_groups: "Grupos de Procesos"
