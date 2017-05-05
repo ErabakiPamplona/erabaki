@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170405160829) do
+ActiveRecord::Schema.define(version: 20170505111128) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -76,7 +76,7 @@ ActiveRecord::Schema.define(version: 20170405160829) do
     t.integer  "decidim_category_id"
     t.datetime "created_at",          null: false
     t.datetime "updated_at",          null: false
-    t.string   "reference",           null: false
+    t.string   "reference"
     t.index ["decidim_category_id"], name: "index_decidim_budgets_projects_on_decidim_category_id", using: :btree
     t.index ["decidim_feature_id"], name: "index_decidim_budgets_projects_on_decidim_feature_id", using: :btree
     t.index ["decidim_scope_id"], name: "index_decidim_budgets_projects_on_decidim_scope_id", using: :btree
@@ -103,18 +103,21 @@ ActiveRecord::Schema.define(version: 20170405160829) do
   end
 
   create_table "decidim_comments_comments", force: :cascade do |t|
-    t.text     "body",                                 null: false
-    t.string   "decidim_commentable_type",             null: false
-    t.integer  "decidim_commentable_id",               null: false
-    t.integer  "decidim_author_id",                    null: false
-    t.datetime "created_at",                           null: false
-    t.datetime "updated_at",                           null: false
-    t.integer  "depth",                    default: 0, null: false
-    t.integer  "alignment",                default: 0, null: false
+    t.text     "body",                                      null: false
+    t.string   "decidim_commentable_type",                  null: false
+    t.integer  "decidim_commentable_id",                    null: false
+    t.integer  "decidim_author_id",                         null: false
+    t.datetime "created_at",                                null: false
+    t.datetime "updated_at",                                null: false
+    t.integer  "depth",                         default: 0, null: false
+    t.integer  "alignment",                     default: 0, null: false
     t.integer  "decidim_user_group_id"
+    t.string   "decidim_root_commentable_type",             null: false
+    t.integer  "decidim_root_commentable_id",               null: false
     t.index ["created_at"], name: "index_decidim_comments_comments_on_created_at", using: :btree
     t.index ["decidim_author_id"], name: "decidim_comments_comment_author", using: :btree
     t.index ["decidim_commentable_type", "decidim_commentable_id"], name: "decidim_comments_comment_commentable", using: :btree
+    t.index ["decidim_root_commentable_type", "decidim_root_commentable_id"], name: "decidim_comments_comment_root_commentable", using: :btree
   end
 
   create_table "decidim_features", force: :cascade do |t|
@@ -161,7 +164,7 @@ ActiveRecord::Schema.define(version: 20170405160829) do
     t.time     "closed_at"
     t.float    "latitude"
     t.float    "longitude"
-    t.string   "reference",               null: false
+    t.string   "reference"
     t.index ["decidim_author_id"], name: "index_decidim_meetings_meetings_on_decidim_author_id", using: :btree
     t.index ["decidim_category_id"], name: "index_decidim_meetings_meetings_on_decidim_category_id", using: :btree
     t.index ["decidim_feature_id"], name: "index_decidim_meetings_meetings_on_decidim_feature_id", using: :btree
@@ -245,8 +248,8 @@ ActiveRecord::Schema.define(version: 20170405160829) do
   create_table "decidim_participatory_process_steps", force: :cascade do |t|
     t.jsonb    "title",                                            null: false
     t.jsonb    "description"
-    t.datetime "start_date"
-    t.datetime "end_date"
+    t.date     "start_date"
+    t.date     "end_date"
     t.integer  "decidim_participatory_process_id"
     t.datetime "created_at",                                       null: false
     t.datetime "updated_at",                                       null: false
@@ -309,10 +312,11 @@ ActiveRecord::Schema.define(version: 20170405160829) do
     t.string   "state"
     t.datetime "answered_at"
     t.jsonb    "answer"
-    t.string   "reference",                         null: false
+    t.string   "reference"
     t.text     "address"
     t.float    "latitude"
     t.float    "longitude"
+    t.string   "image"
     t.index ["body"], name: "decidim_proposals_proposal_body_search", using: :btree
     t.index ["created_at"], name: "index_decidim_proposals_proposals_on_created_at", using: :btree
     t.index ["decidim_author_id"], name: "index_decidim_proposals_proposals_on_decidim_author_id", using: :btree
@@ -356,7 +360,7 @@ ActiveRecord::Schema.define(version: 20170405160829) do
     t.integer  "decidim_category_id"
     t.datetime "created_at",          null: false
     t.datetime "updated_at",          null: false
-    t.string   "reference",           null: false
+    t.string   "reference"
     t.index ["decidim_category_id"], name: "index_decidim_results_results_on_decidim_category_id", using: :btree
     t.index ["decidim_feature_id"], name: "index_decidim_results_results_on_decidim_feature_id", using: :btree
     t.index ["decidim_scope_id"], name: "index_decidim_results_results_on_decidim_scope_id", using: :btree
