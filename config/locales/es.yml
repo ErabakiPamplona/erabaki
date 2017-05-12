@@ -1,4 +1,12 @@
 es:
+  pages:
+    home:
+      statistics:
+        users_count: Usuarios
+        processes_count: Procesos
+        results_count: Resultados
+        comments_count: Comentarios
+        meetings_count: Encuentros
   census_authorization_handler:
     invalid_document: Documento de identidad invalido
     invalid_postal_code: Código postal invalido

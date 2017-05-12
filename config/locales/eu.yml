@@ -1,4 +1,12 @@
 eu:
+  pages:
+    home:
+      statistics:
+        users_count: Erabiltzaileak
+        processes_count: Proposamenak
+        results_count: Emaitzak
+        comments_count: Iruzkin
+        meetings_count: Topaketa-zerrenda
   census_authorization_handler:
     invalid_document: Documento de identidad invalido
     invalid_postal_code: Código postal invalido
