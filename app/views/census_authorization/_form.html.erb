@@ -23,3 +23,10 @@
 <div class="actions">
   <%= form.submit t("authorize", scope: "decidim.authorizations.new"), class: "button expanded" %>
 </div>
+
+<script>
+$("#authorization_handler_scope_id option").each(function()
+{
+    $(this).text($(this).attr('es'));
+});
+</script>
