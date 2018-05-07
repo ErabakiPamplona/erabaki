@@ -1,9 +1,8 @@
 source "https://rubygems.org"
 
-ruby '2.4.1'
+ruby '2.5.0'
 
-gem "decidim", git: "https://github.com/decidim/decidim.git", :tag =>"v0.9.2"
-gem "decidim-module-blogs", path:"decidim-module-blogs"
+gem "decidim", git: "https://github.com/decidim/decidim.git", :tag =>"v0.11.0"
 
 gem 'puma'
 gem 'uglifier', '~> 4.0'
@@ -12,7 +11,7 @@ gem 'faker'
 group :development, :test do
   gem 'byebug', '~> 10.0', platform: :mri
 
-  gem "decidim-dev", git: "https://github.com/decidim/decidim.git", :tag =>"v0.9.2"
+  gem "decidim-dev", git: "https://github.com/decidim/decidim.git", :tag =>"v0.11.0"
 
 end
 
