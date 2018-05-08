@@ -3,7 +3,6 @@
 Decidim.configure do |config|
   config.application_name = "Erabaki Pamplona"
   config.mailer_sender    = "erabaki@pamplona.es"
-  config.authorization_handlers = [CensusAuthorizationHandler]
   config.maximum_attachment_size = 150.megabytes
   # Uncomment this lines to set your preferred locales
   # config.available_locales = %i{en ca es}
@@ -20,4 +19,8 @@ Decidim.configure do |config|
 
   # The number of reports which an object can receive before hiding it
   # config.max_reports_before_hiding = 3
+end
+
+Decidim::Verifications.register_workflow(:census_authorization_handler) do |auth|
+  auth.form = "CensusAuthorizationHandler"
 end
