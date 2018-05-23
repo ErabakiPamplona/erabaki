@@ -7,6 +7,7 @@ gem "decidim", git: "https://github.com/decidim/decidim.git", :tag =>"v0.11.0"
 gem 'puma'
 gem 'uglifier', '~> 4.0'
 gem 'faker'
+gem 'exception_notification'
 
 group :development, :test do
   gem 'byebug', '~> 10.0', platform: :mri

@@ -83,6 +83,14 @@ Rails.application.configure do
 #    :openssl_verify_mode => 'none'
   }
 
+  Rails.application.config.middleware.use ExceptionNotification::Rack,
+  :email => {
+    :deliver_with => :deliver, # Rails >= 4.2.1 do not need this option since it defaults to :deliver_now
+    :email_prefix => "[Erabaki] ",
+    :sender_address => %{"notifier" <erabaki@pamplona.es>},
+    :exception_recipients => %w{erabaki@planeasoluciones.com}
+  }
+
   if Rails.application.secrets.sendgrid
     config.action_mailer.default_options = {
       "X-SMTPAPI" => {
