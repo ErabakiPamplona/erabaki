@@ -2,7 +2,10 @@ source "https://rubygems.org"
 
 ruby '2.5.0'
 
-gem "decidim", git: "https://github.com/decidim/decidim.git", :tag =>"v0.11.0"
+DECIDIM_VERSION = { git: "https://github.com/decidim/decidim.git", branch:'0.13-stable' }
+
+
+gem "decidim", DECIDIM_VERSION
 
 gem 'puma'
 gem 'uglifier', '~> 4.0'
@@ -12,7 +15,7 @@ gem 'exception_notification'
 group :development, :test do
   gem 'byebug', '~> 10.0', platform: :mri
 
-  gem "decidim-dev", git: "https://github.com/decidim/decidim.git", :tag =>"v0.11.0"
+  gem "decidim-dev", DECIDIM_VERSION
 
 end
 
