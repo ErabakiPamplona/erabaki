@@ -617,7 +617,7 @@ GEM
     ruby-ole (1.2.12.1)
     ruby-progressbar (1.9.0)
     ruby_dep (1.5.0)
-    rubyzip (1.2.1)
+    rubyzip (1.2.2)
     safe_yaml (1.0.4)
     sass (3.4.25)
     sassc (1.11.4)
