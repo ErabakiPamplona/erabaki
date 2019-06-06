@@ -5,7 +5,8 @@ Decidim.configure do |config|
   config.mailer_sender    = "erabaki@pamplona.es"
   config.maximum_attachment_size = 150.megabytes
   # Uncomment this lines to set your preferred locales
-  # config.available_locales = %i{en ca es}
+  config.available_locales = %i{es eu}
+  config.default_locale = :es
 
   # Geocoder configuration
    config.geocoder = {
