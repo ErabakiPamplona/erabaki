@@ -2,7 +2,7 @@ source "https://rubygems.org"
 
 ruby '2.5.0'
 
-DECIDIM_VERSION = { git: "https://github.com/decidim/decidim.git", branch:'0.18-stable' }
+DECIDIM_VERSION = { git: "https://github.com/decidim/decidim.git", branch:'release/0.19-stable' }
 
 
 gem "decidim", DECIDIM_VERSION
@@ -13,7 +13,7 @@ gem 'faker'
 gem 'exception_notification'
 
 group :development, :test do
-  gem 'byebug', '~> 10.0', platform: :mri
+  gem 'byebug', '~> 11.0', platform: :mri
 
   gem "decidim-dev", DECIDIM_VERSION
 
