@@ -2,12 +2,12 @@ source "https://rubygems.org"
 
 ruby '2.5.0'
 
-DECIDIM_VERSION = { git: "https://github.com/decidim/decidim.git", branch:'release/0.20-stable' }
+DECIDIM_VERSION = { git: "https://github.com/decidim/decidim.git", branch:'release/0.21-stable' }
 
 
 gem "decidim", DECIDIM_VERSION
 
-gem 'puma'
+gem 'puma', '>= 4.3'
 gem 'uglifier', '~> 4.0'
 gem 'faker'
 gem 'exception_notification'
