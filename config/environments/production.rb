@@ -86,9 +86,9 @@ Rails.application.configure do
   Rails.application.config.middleware.use ExceptionNotification::Rack,
   :email => {
     :deliver_with => :deliver, # Rails >= 4.2.1 do not need this option since it defaults to :deliver_now
-    :email_prefix => "[Erabaki] ",
-    :sender_address => %{"notifier" <erabaki@pamplona.es>},
-    :exception_recipients => %w{erabaki@planeasoluciones.com}
+    :email_prefix => "[Decide Pamplona] ",
+    :sender_address => %{"notifier" <decide@pamplona.es>},
+    :exception_recipients => Rails.application.secrets.smtp_exception
   }
 
   if Rails.application.secrets.sendgrid

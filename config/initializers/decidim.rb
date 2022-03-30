@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 # frozen_string_literal: true
 Decidim.configure do |config|
-  config.application_name = "Erabaki Pamplona"
-  config.mailer_sender    = "erabaki@pamplona.es"
+  config.application_name = "Decide Pamplona"
+  config.mailer_sender    = "decide@pamplona.es"
   config.maximum_attachment_size = 150.megabytes
   # Uncomment this lines to set your preferred locales
   config.available_locales = %i{es eu}
