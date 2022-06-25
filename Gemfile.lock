@@ -367,7 +367,7 @@ GEM
       actionmailer (>= 4.1.0)
       devise (>= 4.0.0)
     diff-lcs (1.5.0)
-    diffy (3.4.0)
+    diffy (3.4.2)
     doc2text (0.4.5)
       nokogiri (>= 1.13.2, < 1.14.0)
       rubyzip (~> 2.3.0)
