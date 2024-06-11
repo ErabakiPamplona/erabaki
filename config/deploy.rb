@@ -1,5 +1,6 @@
 # config valid only for current version of Capistrano
 lock "3.18.1"
+SSHKit.config.command_map[:bundle] = 'bundle _1.17.2_'
 
 def deploysecret(key)
   @deploy_secrets_yml ||= YAML.load_file('config/deploy-secrets.yml')[fetch(:stage).to_s]
