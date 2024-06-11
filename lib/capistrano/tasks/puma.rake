@@ -5,7 +5,9 @@ namespace :puma do
   task :start do
     on roles(:app) do
       within current_path do
-        execute :bundle, :exec, :puma, '-C config/puma.rb'
+        with bundle_gemfile: current_path.join('Gemfile') do
+          execute :bundle, :exec, :puma, '-C config/puma.rb'
+        end
       end
     end
   end
@@ -13,7 +15,15 @@ namespace :puma do
   desc 'Stop Puma'
   task :stop do
     on roles(:app) do
-      execute :pumactl, '-S', "#{shared_path}/tmp/pids/puma.state", 'stop'
+      within current_path do
+        with bundle_gemfile: current_path.join('Gemfile') do
+          if test("[ -f #{shared_path}/tmp/pids/puma.state ]")
+            execute :bundle, :exec, :pumactl, '-S', "#{shared_path}/tmp/pids/puma.state", 'stop'
+          else
+            info "Puma state file not found, skipping stop"
+          end
+        end
+      end
     end
   end
 
