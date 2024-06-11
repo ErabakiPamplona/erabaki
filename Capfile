@@ -1,3 +1,7 @@
+# Capfile
+# Ensure the right version of Capistrano is used
+lock '3.18.1'
+
 # Load DSL and set up stages
 require "capistrano/setup"
 
