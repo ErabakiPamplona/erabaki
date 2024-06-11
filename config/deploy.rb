@@ -44,6 +44,9 @@ set :bundle_binstubs, nil
 ## Public/uploads
 set :linked_dirs, fetch(:linked_dirs) + %w{public/uploads}
 
+# Ensure the correct Gemfile is used
+set :bundle_gemfile, -> { release_path.join('Gemfile') }
+
 namespace :puma do
   desc 'Create Directories for Puma Pids and Socket'
   task :make_dirs do
