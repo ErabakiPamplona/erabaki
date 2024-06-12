@@ -23,3 +23,10 @@ public/uploads
 config/database.yml
 config/secrets.yml
 config/deploy-secrets.yml
+
+/public/packs
+/public/packs-test
+/node_modules
+/yarn-error.log
+yarn-debug.log*
+.yarn-integrity

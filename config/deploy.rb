@@ -41,6 +41,14 @@ set :linked_files, %w{config/database.yml config/secrets.yml}
 set :linked_dirs,  %w{log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system public/assets}
 set :bundle_binstubs, nil
 
+## Shared paths after Webpacker migration
+set :linked_dirs, fetch(:linked_dirs, []).push(
+  'storage',
+  'tmp/webpacker-cache',
+  'node_modules',
+  'public/decidim-packs'
+)
+
 ## Public/uploads
 set :linked_dirs, fetch(:linked_dirs) + %w{public/uploads}
 
@@ -90,4 +98,17 @@ namespace :deploy do
   after  :finishing,    :compile_assets
   after  :finishing,    :cleanup
   after  :finishing,    :restart
+end
+
+namespace :deploy do
+  desc "Decidim webpacker configuration"
+  task :decidim_webpacker_install do
+    on roles(:all) do
+      within release_path do
+        execute :npm, "install"
+      end
+    end
+  end
+
+  before "deploy:assets:precompile", "deploy:decidim_webpacker_install"
 end
