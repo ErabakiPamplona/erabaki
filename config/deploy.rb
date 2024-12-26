@@ -63,7 +63,14 @@ namespace :puma do
       execute "mkdir #{shared_path}/tmp/pids -p"
     end
   end
-  
+
+  desc 'Restart Puma'
+  task :restart do
+    on roles(:app)do
+      execute "cd #{current_path} && bundle exec puma -C #{shared_path}/puma.rb"
+    end
+  end
+
   desc 'Start Puma'
   task :start do
     on roles(:app)do
