@@ -80,6 +80,7 @@ Rails.application.configure do
 #    :enable_starttls_auto => Rails.application.secrets.smtp_starttls_auto,
 #    :openssl_verify_mode => 'none'
   }
+  config.active_storage.service = :local #ActiveStorage local
 
   Rails.application.config.middleware.use ExceptionNotification::Rack,
   :email => {
