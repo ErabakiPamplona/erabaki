@@ -17,6 +17,7 @@ Decidim.configure do |config|
   # Currency unit
   # config.currency_unit = "€"
   config.unconfirmed_access_for = 2.days
+  config.enable_module(:templates)
   # The number of reports which an object can receive before hiding it
   # config.max_reports_before_hiding = 3
 end
