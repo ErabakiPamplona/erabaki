@@ -1,5 +1,13 @@
 # -*- coding: utf-8 -*-
 # frozen_string_literal: true
+# Geocoder configuration
+Geocoder.configure(
+  lookup: :here,
+  api_key: Rails.application.secrets.geocoder[:here_api_key],
+  use_https: true
+)
+
+
 Decidim.configure do |config|
   config.application_name = "Decide Pamplona"
   config.mailer_sender    = "decide@pamplona.es"
