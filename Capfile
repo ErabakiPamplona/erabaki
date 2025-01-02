@@ -43,7 +43,7 @@ install_plugin Capistrano::SCM::Git
   require "capistrano/rvm"
   require "capistrano/puma"
   install_plugin Capistrano::Puma  # Default puma tasks
-  install_plugin Capistrano::Puma::Nginx  # if you want to upload a nginx site template
+#  install_plugin Capistrano::Puma::Nginx  # if you want to upload a nginx site template
   require 'capistrano/rails/console'
 
 # Load custom tasks from `lib/capistrano/tasks` if you have any defined
