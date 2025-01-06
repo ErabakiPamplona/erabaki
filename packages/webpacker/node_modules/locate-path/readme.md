@@ -1,4 +1,4 @@
-# locate-path [![Build Status](https://travis-ci.com/sindresorhus/locate-path.svg?branch=master)](https://travis-ci.com/github/sindresorhus/locate-path)
+# locate-path
 
 > Get the first path that exists on disk of multiple paths
 
@@ -13,7 +13,7 @@ $ npm install locate-path
 Here we find the first file that exists on disk, in array order.
 
 ```js
-const locatePath = require('locate-path');
+import {locatePath} from 'locate-path';
 
 const files = [
 	'unicorn.png',
@@ -21,10 +21,8 @@ const files = [
 	'pony.png'
 ];
 
-(async () => {
-	console(await locatePath(files));
-	//=> 'rainbow'
-})();
+console(await locatePath(files));
+//=> 'rainbow'
 ```
 
 ## API
@@ -37,7 +35,7 @@ Returns a `Promise<string>` for the first path that exists or `undefined` if non
 
 Type: `Iterable<string>`
 
-Paths to check.
+The paths to check.
 
 #### options
 
@@ -49,7 +47,7 @@ Type: `number`\
 Default: `Infinity`\
 Minimum: `1`
 
-Number of concurrently pending promises.
+The number of concurrently pending promises.
 
 ##### preserveOrder
 
@@ -62,10 +60,10 @@ Disable this to improve performance if you don't care about the order.
 
 ##### cwd
 
-Type: `string`\
+Type: `URL | string`\
 Default: `process.cwd()`
 
-Current working directory.
+The current working directory.
 
 ##### type
 
@@ -82,7 +80,7 @@ Default: `true`
 
 Allow symbolic links to match if they point to the chosen path type.
 
-### locatePath.sync(paths, options?)
+### locatePathSync(paths, options?)
 
 Returns the first path that exists or `undefined` if none exists.
 
@@ -90,7 +88,7 @@ Returns the first path that exists or `undefined` if none exists.
 
 Type: `Iterable<string>`
 
-Paths to check.
+The paths to check.
 
 #### options
 

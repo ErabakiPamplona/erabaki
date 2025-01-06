@@ -1,16 +1,17 @@
 source "https://rubygems.org"
 
-ruby '3.0.2'
+ruby '3.1.1'
 
-DECIDIM_VERSION = { git: "https://github.com/decidim/decidim.git", branch:'release/0.27-stable' }
+DECIDIM_VERSION = { git: "https://github.com/decidim/decidim.git", branch:'release/0.28-stable' }
 
 
 gem "decidim", DECIDIM_VERSION
 
-gem 'puma', '>= 5.0.0'
+gem 'puma', '>= 6.3.1'
 gem 'uglifier', '~> 4.0'
-gem 'faker'
+gem 'faker', '~> 3.2'
 gem 'exception_notification'
+gem 'social-share-button'
 
 group :development, :test do
   gem 'byebug', '~> 11.0', platform: :mri
@@ -22,8 +23,6 @@ end
 group :development do
   gem 'web-console'
   gem 'listen', '~> 3.7'
-  gem 'spring'
-  gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'capistrano', '3.18.1', require:false
   gem 'capistrano-rvm', require:false
   gem 'capistrano-rails', require:false
