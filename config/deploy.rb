@@ -118,6 +118,7 @@ namespace :deploy do
   task :decidim_webpacker_install do
     on roles(:all) do
       within release_path do
+        execute :rm, "-rf #{release_path}/node_modules" # Eliminar node_modules existente
         execute :ln, "-s", "#{shared_path}/node_modules", "#{release_path}/node_modules"
         execute :npm, "install"
       end
