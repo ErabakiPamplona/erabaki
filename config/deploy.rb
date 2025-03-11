@@ -81,13 +81,17 @@ namespace :puma do
 end
 
 namespace :deploy do
-  desc "Make sure local git is in sync with remote."
+  desc "Make sure local git is in sync with remote (only for master)."
   task :check_revision do
     on roles(:app) do
-      unless `git rev-parse HEAD` == `git rev-parse origin/master`
-        puts "WARNING: HEAD is not the same as origin/master"
-        puts "Run `git push` to sync changes."
-        exit
+      if fetch(:branch).to_s == "master"
+        unless `git rev-parse HEAD` == `git rev-parse origin/master`
+          puts "WARNING: HEAD is not the same as origin/master"
+          puts "Run `git push` to sync changes."
+          exit
+        end
+      else
+        info "Skipping revision check for branch #{fetch(:branch)}"
       end
     end
   end
