@@ -20,6 +20,8 @@
     "@decidim/dev": "file:packages/dev",
     "@decidim/eslint-config": "file:packages/eslint-config",
     "@decidim/stylelint-config": "file:packages/stylelint-config",
-    "postcss-import": "^15.1.0"
+    "postcss-flexbugs-fixes": "^5.0.2",
+    "postcss-import": "^15.1.0",
+    "postcss-preset-env": "^9.6.0"
   }
 }
