@@ -84,9 +84,17 @@ namespace :deploy do
   desc "Make sure local git is in sync with remote."
   task :check_revision do
     on roles(:app) do
-      unless `git rev-parse HEAD` == `git rev-parse origin/master`
-        puts "WARNING: HEAD is not the same as origin/master"
-        puts "Run `git push` to sync changes."
+      branch = fetch(:branch).to_s
+      if branch.match?(/\A[0-9a-f]{7,40}\z/)
+        puts "WARNING: Skipping revision check for SHA branch #{branch}"
+        next
+      end
+
+      local_head = `git rev-parse HEAD`.strip
+      remote_head = `git rev-parse origin/#{branch}`.strip
+      unless local_head == remote_head
+        puts "WARNING: HEAD is not the same as origin/#{branch}"
+        puts "Run `git push -u origin #{branch}` to sync changes."
         exit
       end
     end
