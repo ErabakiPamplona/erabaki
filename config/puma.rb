@@ -21,6 +21,10 @@ end
 #
 environment ENV.fetch("RAILS_ENV") { "development" }
 
+# Paths for pid/state files to allow pumactl management in deploys.
+pidfile ENV.fetch("PUMA_PIDFILE") { "tmp/pids/puma.pid" }
+state_path ENV.fetch("PUMA_STATE") { "tmp/pids/puma.state" }
+
 # Specifies the number of `workers` to boot in clustered mode.
 # Workers are forked webserver processes. If using threads and workers together
 # the concurrency of the application would be max `threads` * `workers`.

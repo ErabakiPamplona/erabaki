@@ -66,14 +66,14 @@ namespace :puma do
   desc 'Restart Puma'
   task :restart do
     on roles(:app)do
-      execute "cd #{current_path} && RAILS_ENV='#{fetch(:rails_env)}' PUMA_BIND='#{fetch(:puma_bind)}' /usr/local/rvm/bin/rvm default do bundle exec puma -C #{current_path}/config/puma.rb"
+      execute "cd #{current_path} && RAILS_ENV='#{fetch(:rails_env)}' RACK_ENV='#{fetch(:rails_env)}' PUMA_STATE='#{fetch(:puma_state)}' /usr/local/rvm/bin/rvm default do bundle exec pumactl -S #{fetch(:puma_state)} restart"
     end
   end
 
   desc 'Start Puma'
   task :start do
     on roles(:app)do
-      execute "cd #{current_path} && RAILS_ENV='#{fetch(:rails_env)}' PUMA_BIND='#{fetch(:puma_bind)}' /usr/local/rvm/bin/rvm default do bundle exec puma -C #{current_path}/config/puma.rb"
+      execute "cd #{current_path} && RAILS_ENV='#{fetch(:rails_env)}' RACK_ENV='#{fetch(:rails_env)}' PUMA_BIND='#{fetch(:puma_bind)}' PUMA_STATE='#{fetch(:puma_state)}' PUMA_PIDFILE='#{fetch(:puma_pid)}' nohup /usr/local/rvm/bin/rvm default do bundle exec puma -C #{current_path}/config/puma.rb > /dev/null 2>&1 &"
     end
   end
 
