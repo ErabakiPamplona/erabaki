@@ -68,3 +68,13 @@ set :rails_env, :production
 set :default_env, { path: "#{deploysecret(:npm_path)}:$PATH" }
 
 server deploysecret(:server), user: deploysecret(:user), roles: %w(web app db importer cron)
+
+# Skip assets manifest backup in staging when Sprockets manifests are absent.
+Rake::Task["deploy:assets:backup_manifest"].clear_actions
+namespace :deploy do
+  namespace :assets do
+    task :backup_manifest do
+      info "Skipping assets manifest backup in staging"
+    end
+  end
+end
