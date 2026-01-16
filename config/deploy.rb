@@ -66,14 +66,14 @@ namespace :puma do
   desc 'Restart Puma'
   task :restart do
     on roles(:app)do
-      execute "cd #{current_path} && /usr/local/rvm/bin/rvm default do bundle exec puma -C #{shared_path}/puma.rb"
+      execute "cd #{current_path} && PUMA_BIND='#{fetch(:puma_bind)}' /usr/local/rvm/bin/rvm default do bundle exec puma -C #{current_path}/config/puma.rb"
     end
   end
 
   desc 'Start Puma'
   task :start do
     on roles(:app)do
-      execute "cd #{current_path} && /usr/local/rvm/bin/rvm default do bundle exec puma -C #{shared_path}/puma.rb"
+      execute "cd #{current_path} && PUMA_BIND='#{fetch(:puma_bind)}' /usr/local/rvm/bin/rvm default do bundle exec puma -C #{current_path}/config/puma.rb"
     end
   end
 

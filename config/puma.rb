@@ -7,9 +7,15 @@
 threads_count = ENV.fetch("RAILS_MAX_THREADS") { 5 }.to_i
 threads threads_count, threads_count
 
-# Specifies the `port` that Puma will listen on to receive requests, default is 3000.
-#
-port        ENV.fetch("PORT") { 3000 }
+# Bind to a Unix socket in production when provided by the deploy.
+# Falls back to TCP for local/dev usage.
+bind_value = ENV["PUMA_BIND"]
+if bind_value && !bind_value.empty?
+  bind bind_value
+else
+  # Specifies the `port` that Puma will listen on to receive requests, default is 3000.
+  port ENV.fetch("PORT") { 3000 }
+end
 
 # Specifies the `environment` that Puma will run in.
 #
