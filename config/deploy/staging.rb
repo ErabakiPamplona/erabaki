@@ -74,7 +74,7 @@ Rake::Task["deploy:assets:backup_manifest"].clear_actions
 namespace :deploy do
   namespace :assets do
     task :backup_manifest do
-      info "Skipping assets manifest backup in staging"
+      puts "Skipping assets manifest backup in staging"
     end
   end
 end
