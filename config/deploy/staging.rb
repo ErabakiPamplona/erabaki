@@ -59,3 +59,11 @@
 #     auth_methods: %w(publickey password)
 #     # password: "please use keys"
 #   }
+set :deploy_to, deploysecret(:deploy_to)
+set :branch, ENV['branch'] || :master
+set :ssh_options, port: deploysecret(:ssh_port)
+set :stage, :staging
+set :rails_env, :production
+set :default_env, { path: "#{deploysecret(:npm_path)}:$PATH" }
+
+server deploysecret(:server), user: deploysecret(:user), roles: %w(web app db importer cron)
