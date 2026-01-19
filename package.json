@@ -6,7 +6,7 @@
     "@decidim/core": "file:packages/core",
     "@decidim/elections": "file:packages/elections",
     "@decidim/webpacker": "file:packages/webpacker",
-    "shakapacker": "^8.1.0"
+    "shakapacker": "7.1.0"
   },
   "version": "0.1.0",
   "babel": {
