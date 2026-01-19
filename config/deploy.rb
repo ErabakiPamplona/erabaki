@@ -127,3 +127,11 @@ namespace :deploy do
 
   before "deploy:assets:precompile", "deploy:decidim_webpacker_install"
 end
+
+namespace :deploy do
+  namespace :assets do
+    task :backup_manifest do
+      # No-op: Decidim uses Shakapacker, no Sprockets manifest to back up.
+    end
+  end
+end
