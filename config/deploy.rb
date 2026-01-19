@@ -66,14 +66,14 @@ namespace :puma do
   desc 'Restart Puma'
   task :restart do
     on roles(:app)do
-      execute "cd #{current_path} && bundle exec puma -C #{shared_path}/puma.rb"
+      execute "cd #{current_path} && RAILS_ENV=production RACK_ENV=production bundle exec puma -C #{shared_path}/puma.rb"
     end
   end
 
   desc 'Start Puma'
   task :start do
     on roles(:app)do
-      execute "cd #{current_path} && bundle exec puma -C #{shared_path}/puma.rb"
+      execute "cd #{current_path} && RAILS_ENV=production RACK_ENV=production bundle exec puma -C #{shared_path}/puma.rb"
     end
   end
 
