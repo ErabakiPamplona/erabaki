@@ -128,6 +128,10 @@ namespace :deploy do
   before "deploy:assets:precompile", "deploy:decidim_webpacker_install"
 end
 
+if Rake::Task.task_defined?("deploy:assets:backup_manifest")
+  Rake::Task["deploy:assets:backup_manifest"].clear_actions
+end
+
 namespace :deploy do
   namespace :assets do
     task :backup_manifest do
