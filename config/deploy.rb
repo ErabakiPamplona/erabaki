@@ -66,14 +66,14 @@ namespace :puma do
   desc 'Restart Puma'
   task :restart do
     on roles(:app)do
-      execute "cd #{current_path} && RAILS_ENV=production RACK_ENV=production bundle exec puma -C #{shared_path}/puma.rb"
+      execute "cd #{current_path} && RAILS_ENV=production RACK_ENV=production PUMA_BIND='#{fetch(:puma_bind)}' PUMA_STATE='#{fetch(:puma_state)}' PUMA_PIDFILE='#{fetch(:puma_pid)}' nohup bundle exec puma -C #{shared_path}/puma.rb >> #{shared_path}/log/puma.stdout.log 2>> #{shared_path}/log/puma.stderr.log < /dev/null &"
     end
   end
 
   desc 'Start Puma'
   task :start do
     on roles(:app)do
-      execute "cd #{current_path} && RAILS_ENV=production RACK_ENV=production bundle exec puma -C #{shared_path}/puma.rb"
+      execute "cd #{current_path} && RAILS_ENV=production RACK_ENV=production PUMA_BIND='#{fetch(:puma_bind)}' PUMA_STATE='#{fetch(:puma_state)}' PUMA_PIDFILE='#{fetch(:puma_pid)}' nohup bundle exec puma -C #{shared_path}/puma.rb >> #{shared_path}/log/puma.stdout.log 2>> #{shared_path}/log/puma.stderr.log < /dev/null &"
     end
   end
 
