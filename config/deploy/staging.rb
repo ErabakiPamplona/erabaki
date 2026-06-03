@@ -1,3 +1,11 @@
+set :deploy_to, deploysecret(:deploy_to)
+set :branch, ENV['branch'] || :master
+set :ssh_options, port: deploysecret(:ssh_port)
+set :stage, :staging
+set :rails_env, :production
+
+server deploysecret(:server), user: deploysecret(:user), roles: %w(web app db importer cron)
+
 # server-based syntax
 # ======================
 # Defines a single server with a list of roles and multiple properties.
