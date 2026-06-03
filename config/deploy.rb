@@ -125,3 +125,11 @@ namespace :deploy do
 
   before "deploy:assets:precompile", "deploy:decidim_webpacker_install"
 end
+
+Rake::Task["deploy:assets:backup_manifest"].clear_actions
+namespace :deploy do
+  namespace :assets do
+    task :backup_manifest do
+    end
+  end
+end
