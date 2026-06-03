@@ -26,9 +26,16 @@ config/deploy-secrets.yml
 
 /public/packs
 /public/packs-test
+/public/decidim-packs
+/public/decidim-packs-test
 /node_modules
 /yarn-error.log
 yarn-debug.log*
 .yarn-integrity
 public/sw.js
 public/sw.js.map
+public/sw.js.br
+public/sw.js.gz
+public/sw.js.LICENSE.txt
+public/sw.js.map.br
+public/sw.js.map.gz

@@ -1,8 +1,8 @@
 source "https://rubygems.org"
 
-ruby '3.0.2'
+ruby '3.1.1'
 
-DECIDIM_VERSION = { git: "https://github.com/decidim/decidim.git", branch:'release/0.27-stable' }
+DECIDIM_VERSION = "0.28.6"
 
 
 gem "decidim", DECIDIM_VERSION
@@ -22,8 +22,6 @@ end
 group :development do
   gem 'web-console'
   gem 'listen', '~> 3.7'
-  gem 'spring'
-  gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'capistrano', '3.18.1', require:false
   gem 'capistrano-rvm', require:false
   gem 'capistrano-rails', require:false

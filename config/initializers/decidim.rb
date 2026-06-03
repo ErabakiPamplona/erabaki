@@ -10,7 +10,7 @@ Decidim.configure do |config|
 
   # Geocoder configuration
    config.geocoder = {
-     static_map_url: "https://image.maps.ls.hereapi.com/mia/1.6/mapview",
+     static_map_url: "https://image.maps.hereapi.com/mia/v3/base/mc/overlay",
      here_api_key: Rails.application.secrets.geocoder[:here_api_key]
    }
 
@@ -28,3 +28,10 @@ end
 
 # Inform Decidim about the assets folder
 Decidim.register_assets_path File.expand_path("app/packs", Rails.application.root)
+
+if Decidim.module_installed?(:verifications)
+  Decidim::Verifications.configure do |c|
+    c.document_types = Rails.application.secrets.dig(:verifications, :document_types).presence ||
+                       %w(identification_number passport)
+  end
+end
