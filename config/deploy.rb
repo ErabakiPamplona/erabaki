@@ -65,15 +65,24 @@ namespace :puma do
 
   desc 'Restart Puma'
   task :restart do
-    on roles(:app)do
-      execute "cd #{current_path} && RAILS_ENV=production bundle exec puma -C #{shared_path}/puma.rb"
+    on roles(:app) do
+      execute "kill $(cat #{shared_path}/tmp/pids/puma.pid 2>/dev/null) 2>/dev/null; true"
+      execute "cd #{current_path} && " \
+              "nohup /usr/local/rvm/bin/rvm default do bundle exec puma " \
+              "-C #{shared_path}/puma.rb " \
+              ">> #{shared_path}/log/puma.stdout.log " \
+              "2>> #{shared_path}/log/puma.stderr.log < /dev/null &"
     end
   end
 
   desc 'Start Puma'
   task :start do
-    on roles(:app)do
-      execute "cd #{current_path} && RAILS_ENV=production bundle exec puma -C #{shared_path}/puma.rb"
+    on roles(:app) do
+      execute "cd #{current_path} && " \
+              "nohup /usr/local/rvm/bin/rvm default do bundle exec puma " \
+              "-C #{shared_path}/puma.rb " \
+              ">> #{shared_path}/log/puma.stdout.log " \
+              "2>> #{shared_path}/log/puma.stderr.log < /dev/null &"
     end
   end
 
