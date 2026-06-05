@@ -83,7 +83,7 @@ namespace :puma do
   desc 'Restart Puma'
   task :restart do
     on roles(:app) do
-      execute "kill -SIGUSR2 $(cat #{shared_path}/tmp/pids/puma.pid 2>/dev/null) 2>/dev/null || " \
+      execute "kill $(cat #{shared_path}/tmp/pids/puma.pid 2>/dev/null) 2>/dev/null; sleep 3; " \
               "BUNDLE_GEMFILE=#{current_path}/Gemfile RAILS_ENV=production setsid #{deploysecret(:rvm_wrapper)} bundle exec puma " \
               "-C #{shared_path}/puma.rb " \
               ">> #{shared_path}/log/puma.stdout.log " \
