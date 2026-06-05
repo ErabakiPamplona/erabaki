@@ -6,5 +6,6 @@ set :ssh_options, port: deploysecret(:ssh_port)
 set :stage, :production
 set :rails_env, :production
 set :rvm_ruby_version, File.read('.ruby-version').strip
+set :default_env, { path: "#{deploysecret(:npm_path)}:$PATH" }
 
 server deploysecret(:server), user: deploysecret(:user), roles: %w(web app db importer cron)
