@@ -63,12 +63,28 @@ namespace :puma do
     end
   end
 
+  desc 'Write correct puma.rb to shared path'
+  task :write_config do
+    on roles(:app) do
+      config = [
+        "threads_count = ENV.fetch(\"RAILS_MAX_THREADS\") { 5 }.to_i",
+        "threads threads_count, threads_count",
+        "environment ENV.fetch(\"RAILS_ENV\") { \"production\" }",
+        "bind \"unix://#{shared_path}/tmp/sockets/#{fetch(:application)}-puma.sock\"",
+        "pidfile \"#{shared_path}/tmp/pids/puma.pid\"",
+        "state_path \"#{shared_path}/tmp/pids/puma.state\"",
+        "activate_control_app",
+        "plugin :tmp_restart"
+      ].join("\n")
+      upload! StringIO.new(config), "#{shared_path}/puma.rb"
+    end
+  end
+
   desc 'Restart Puma'
   task :restart do
     on roles(:app) do
-      # Hot restart if running (SIGUSR2), fresh start otherwise (setsid detaches from pty)
       execute "kill -SIGUSR2 $(cat #{shared_path}/tmp/pids/puma.pid 2>/dev/null) 2>/dev/null || " \
-              "RAILS_ENV=production setsid #{deploysecret(:rvm_wrapper)} bundle exec puma " \
+              "BUNDLE_GEMFILE=#{current_path}/Gemfile RAILS_ENV=production setsid #{deploysecret(:rvm_wrapper)} bundle exec puma " \
               "-C #{shared_path}/puma.rb " \
               ">> #{shared_path}/log/puma.stdout.log " \
               "2>> #{shared_path}/log/puma.stderr.log < /dev/null &"
@@ -78,7 +94,7 @@ namespace :puma do
   desc 'Start Puma'
   task :start do
     on roles(:app) do
-      execute "RAILS_ENV=production setsid #{deploysecret(:rvm_wrapper)} bundle exec puma " \
+      execute "BUNDLE_GEMFILE=#{current_path}/Gemfile RAILS_ENV=production setsid #{deploysecret(:rvm_wrapper)} bundle exec puma " \
               "-C #{shared_path}/puma.rb " \
               ">> #{shared_path}/log/puma.stdout.log " \
               "2>> #{shared_path}/log/puma.stderr.log < /dev/null &"
@@ -86,6 +102,7 @@ namespace :puma do
   end
 
   before :start, :make_dirs
+  before :restart, :write_config
 end
 
 namespace :deploy do
