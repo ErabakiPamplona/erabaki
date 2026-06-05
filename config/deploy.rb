@@ -66,9 +66,9 @@ namespace :puma do
   desc 'Restart Puma'
   task :restart do
     on roles(:app) do
-      execute "kill $(cat #{shared_path}/tmp/pids/puma.pid 2>/dev/null) 2>/dev/null; true"
-      execute "cd #{current_path} && " \
-              "nohup #{deploysecret(:rvm_wrapper)} bundle exec puma " \
+      # Hot restart if running (SIGUSR2), fresh start otherwise (setsid detaches from pty)
+      execute "kill -SIGUSR2 $(cat #{shared_path}/tmp/pids/puma.pid 2>/dev/null) 2>/dev/null || " \
+              "setsid #{deploysecret(:rvm_wrapper)} bundle exec puma " \
               "-C #{shared_path}/puma.rb " \
               ">> #{shared_path}/log/puma.stdout.log " \
               "2>> #{shared_path}/log/puma.stderr.log < /dev/null &"
@@ -78,8 +78,7 @@ namespace :puma do
   desc 'Start Puma'
   task :start do
     on roles(:app) do
-      execute "cd #{current_path} && " \
-              "nohup #{deploysecret(:rvm_wrapper)} bundle exec puma " \
+      execute "setsid #{deploysecret(:rvm_wrapper)} bundle exec puma " \
               "-C #{shared_path}/puma.rb " \
               ">> #{shared_path}/log/puma.stdout.log " \
               "2>> #{shared_path}/log/puma.stderr.log < /dev/null &"
