@@ -70,6 +70,10 @@ Rails.application.configure do
   config.log_formatter = ::Logger::Formatter.new
 
   config.action_mailer.delivery_method = :sendmail
+  config.action_mailer.sendmail_settings = {
+    location:  '/usr/sbin/sendmail',
+    arguments: ['-i']
+  }
   config.action_mailer.smtp_settings = {
     :address        => Rails.application.secrets.smtp_address,
     :port           => Rails.application.secrets.smtp_port,
