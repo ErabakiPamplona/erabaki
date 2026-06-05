@@ -18,7 +18,7 @@ module.exports = {
   // This content is generated automatically by decidim:webpacker:install task, it
   // should not be updated manually.
   // The array must contain all the decidim modules active in the application
-  content: ['/home/dani/.rbenv/versions/3.2.4/lib/ruby/gems/3.2.0/gems/decidim-core-0.29.7','/home/dani/.rbenv/versions/3.2.4/lib/ruby/gems/3.2.0/gems/decidim-comments-0.29.7','/home/dani/.rbenv/versions/3.2.4/lib/ruby/gems/3.2.0/gems/decidim-accountability-0.29.7','/home/dani/.rbenv/versions/3.2.4/lib/ruby/gems/3.2.0/gems/decidim-admin-0.29.7','/home/dani/.rbenv/versions/3.2.4/lib/ruby/gems/3.2.0/gems/decidim-api-0.29.7','/home/dani/.rbenv/versions/3.2.4/lib/ruby/gems/3.2.0/gems/decidim-assemblies-0.29.7','/home/dani/.rbenv/versions/3.2.4/lib/ruby/gems/3.2.0/gems/decidim-blogs-0.29.7','/home/dani/.rbenv/versions/3.2.4/lib/ruby/gems/3.2.0/gems/decidim-budgets-0.29.7','/home/dani/.rbenv/versions/3.2.4/lib/ruby/gems/3.2.0/gems/decidim-debates-0.29.7','/home/dani/.rbenv/versions/3.2.4/lib/ruby/gems/3.2.0/gems/decidim-forms-0.29.7','/home/dani/.rbenv/versions/3.2.4/lib/ruby/gems/3.2.0/gems/decidim-generators-0.29.7','/home/dani/.rbenv/versions/3.2.4/lib/ruby/gems/3.2.0/gems/decidim-meetings-0.29.7','/home/dani/.rbenv/versions/3.2.4/lib/ruby/gems/3.2.0/gems/decidim-pages-0.29.7','/home/dani/.rbenv/versions/3.2.4/lib/ruby/gems/3.2.0/gems/decidim-participatory_processes-0.29.7','/home/dani/.rbenv/versions/3.2.4/lib/ruby/gems/3.2.0/gems/decidim-proposals-0.29.7','/home/dani/.rbenv/versions/3.2.4/lib/ruby/gems/3.2.0/gems/decidim-sortitions-0.29.7','/home/dani/.rbenv/versions/3.2.4/lib/ruby/gems/3.2.0/gems/decidim-surveys-0.29.7','/home/dani/.rbenv/versions/3.2.4/lib/ruby/gems/3.2.0/gems/decidim-system-0.29.7','/home/dani/.rbenv/versions/3.2.4/lib/ruby/gems/3.2.0/gems/decidim-verifications-0.29.7','/home/dani/.rbenv/versions/3.2.4/lib/ruby/gems/3.2.0/gems/decidim-dev-0.29.7','.'].flatMap(directory => [
+  content: ['/home/dani/.rbenv/versions/3.3.4/lib/ruby/gems/3.3.0/gems/decidim-core-0.30.9','/home/dani/.rbenv/versions/3.3.4/lib/ruby/gems/3.3.0/gems/decidim-comments-0.30.9','/home/dani/.rbenv/versions/3.3.4/lib/ruby/gems/3.3.0/gems/decidim-accountability-0.30.9','/home/dani/.rbenv/versions/3.3.4/lib/ruby/gems/3.3.0/gems/decidim-admin-0.30.9','/home/dani/.rbenv/versions/3.3.4/lib/ruby/gems/3.3.0/gems/decidim-api-0.30.9','/home/dani/.rbenv/versions/3.3.4/lib/ruby/gems/3.3.0/gems/decidim-assemblies-0.30.9','/home/dani/.rbenv/versions/3.3.4/lib/ruby/gems/3.3.0/gems/decidim-blogs-0.30.9','/home/dani/.rbenv/versions/3.3.4/lib/ruby/gems/3.3.0/gems/decidim-budgets-0.30.9','/home/dani/.rbenv/versions/3.3.4/lib/ruby/gems/3.3.0/gems/decidim-debates-0.30.9','/home/dani/.rbenv/versions/3.3.4/lib/ruby/gems/3.3.0/gems/decidim-forms-0.30.9','/home/dani/.rbenv/versions/3.3.4/lib/ruby/gems/3.3.0/gems/decidim-generators-0.30.9','/home/dani/.rbenv/versions/3.3.4/lib/ruby/gems/3.3.0/gems/decidim-meetings-0.30.9','/home/dani/.rbenv/versions/3.3.4/lib/ruby/gems/3.3.0/gems/decidim-pages-0.30.9','/home/dani/.rbenv/versions/3.3.4/lib/ruby/gems/3.3.0/gems/decidim-participatory_processes-0.30.9','/home/dani/.rbenv/versions/3.3.4/lib/ruby/gems/3.3.0/gems/decidim-proposals-0.30.9','/home/dani/.rbenv/versions/3.3.4/lib/ruby/gems/3.3.0/gems/decidim-sortitions-0.30.9','/home/dani/.rbenv/versions/3.3.4/lib/ruby/gems/3.3.0/gems/decidim-surveys-0.30.9','/home/dani/.rbenv/versions/3.3.4/lib/ruby/gems/3.3.0/gems/decidim-system-0.30.9','/home/dani/.rbenv/versions/3.3.4/lib/ruby/gems/3.3.0/gems/decidim-verifications-0.30.9','/home/dani/.rbenv/versions/3.3.4/lib/ruby/gems/3.3.0/gems/decidim-dev-0.30.9','.'].flatMap(directory => [
     `${directory}/app/views/**/*.html.erb`,
     `${directory}/app/cells/**/*.{rb,erb}`,
     `${directory}/app/helpers/**/*.rb`,
@@ -33,7 +33,7 @@ module.exports = {
       current,
       transparent,
       white,
-      neutral,
+      neutral, 
       primary: withOpacity("--primary-rgb"),
       secondary: withOpacity("--secondary-rgb"),
       tertiary: withOpacity("--tertiary-rgb"),
@@ -52,7 +52,8 @@ module.exports = {
         DEFAULT: "#F3F4F7",
         2: "#FAFBFC",
         3: "#EFEFEF",
-        4: "#E4EEFF99" // 60% opacity
+        4: "#E4EEFF99", // 60% opacity
+        5: "#E9E9E9"
       }
     },
     container: {
@@ -66,7 +67,7 @@ module.exports = {
       sans: ["Source Sans Pro", "ui-sans-serif", "system-ui", "sans-serif"]
     },
     fontSize: {
-      xs: ["13px", "16px"],
+      xs: ["12px", "16px"],
       sm: ["14px", "18px"],
       md: ["16px", "20px"],
       lg: ["18px", "23px"],

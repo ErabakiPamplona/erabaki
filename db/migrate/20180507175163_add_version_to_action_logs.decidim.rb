@@ -1,6 +1,7 @@
-# This migration comes from decidim (originally 20180226140756)
 # frozen_string_literal: true
 
+# This migration comes from decidim (originally 20180226140756)
+# This file has been modified by `decidim upgrade:migrations` task on 2026-06-05 14:43:28 UTC
 class AddVersionToActionLogs < ActiveRecord::Migration[5.1]
   class ActionLog < ApplicationRecord
     self.table_name = :decidim_action_logs
@@ -12,6 +13,7 @@ class AddVersionToActionLogs < ActiveRecord::Migration[5.1]
     ActionLog.find_each do |action_log|
       version_id = action_log.extra.dig("version", "id")
       next unless version_id
+
       # rubocop:disable Rails/SkipsModelValidations
       action_log.update_column(:version_id, version_id)
       # rubocop:enable Rails/SkipsModelValidations

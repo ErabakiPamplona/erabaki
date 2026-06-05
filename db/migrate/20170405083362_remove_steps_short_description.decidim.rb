@@ -1,9 +1,16 @@
+# frozen_string_literal: true
+
 # This migration comes from decidim (originally 20170220110740)
+# This file has been modified by `decidim upgrade:migrations` task on 2026-06-05 14:43:29 UTC
 class RemoveStepsShortDescription < ActiveRecord::Migration[5.0]
+  class ParticipatoryProcessStep < ApplicationRecord
+    self.table_name = :decidim_participatory_process_steps
+  end
+
   def change
-    Decidim::ParticipatoryProcessStep.transaction do
-      Decidim::ParticipatoryProcessStep.find_each do |step|
-        step.update_attributes!(
+    ParticipatoryProcessStep.transaction do
+      ParticipatoryProcessStep.find_each do |step|
+        step.update!(
           description: new_description_for(step)
         )
       end

@@ -1,6 +1,7 @@
-# This migration comes from decidim_accountability (originally 20170623094200)
 # frozen_string_literal: true
 
+# This migration comes from decidim_accountability (originally 20170623094200)
+# This file has been modified by `decidim upgrade:migrations` task on 2026-06-05 14:43:27 UTC
 class MigrateAccountabilityResultsCategory < ActiveRecord::Migration[5.1]
   def change
     # Create categorizations ensuring database integrity

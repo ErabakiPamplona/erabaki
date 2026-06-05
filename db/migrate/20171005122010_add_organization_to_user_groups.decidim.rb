@@ -1,6 +1,7 @@
-# This migration comes from decidim (originally 20170608142521)
 # frozen_string_literal: true
 
+# This migration comes from decidim (originally 20170608142521)
+# This file has been modified by `decidim upgrade:migrations` task on 2026-06-05 14:43:28 UTC
 class AddOrganizationToUserGroups < ActiveRecord::Migration[5.0]
   class UserGroup < ApplicationRecord
     self.table_name = :decidim_user_groups
