@@ -1,8 +1,8 @@
 source "https://rubygems.org"
 
-ruby '3.1.1'
+ruby '3.2.4'
 
-DECIDIM_VERSION = "0.28.6"
+DECIDIM_VERSION = "0.29.7"
 
 
 gem "decidim", DECIDIM_VERSION

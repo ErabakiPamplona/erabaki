@@ -2,34 +2,31 @@
   "name": "app",
   "private": true,
   "dependencies": {
+    "@decidim/browserslist-config": "^0.29.7",
+    "@decidim/core": "^0.29.7",
+    "@decidim/webpacker": "^0.29.7",
     "autoprefixer": "^10.4.14",
-    "babel-loader": "^9.1.3",
+    "compression-webpack-plugin": "^10.0.0",
+    "emojibase": "^6.1.0",
+    "graphql": "^15.0.0",
+    "picmo": "^5.8.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "postcss-flexbugs-fixes": "^5.0.2",
     "postcss-preset-env": "^9.0.0",
     "postcss-scss": "^4.0.6",
-    "emojibase": "^6.1.0",
-    "picmo": "^5.8.0",
-    "graphql": "^15.0.0",
-    "compression-webpack-plugin": "^10.0.0",
-    "@decidim/browserslist-config": "^0.28.6",
-    "@decidim/core": "^0.28.6",
-    "@decidim/elections": "^0.28.6",
-    "@decidim/webpacker": "^0.28.6",
-    "shakapacker": "~7.1.0"
+    "shakapacker": "~7.1.0",
+    "uc.micro": "^2.0.0",
+    "webpack-cli": "^5.1.4"
   },
   "version": "0.1.0",
-  "babel": {
-    "presets": [
-      "./node_modules/shakapacker/package/babel/preset.js"
-    ]
-  },
   "browserslist": [
     "extends @decidim/browserslist-config"
   ],
   "devDependencies": {
-    "@decidim/dev": "^0.28.6",
-    "@decidim/eslint-config": "^0.28.6",
-    "@decidim/prettier-config": "^0.28.6",
-    "@decidim/stylelint-config": "^0.28.6"
+    "@decidim/dev": "^0.29.7",
+    "@decidim/eslint-config": "^0.29.7",
+    "@decidim/prettier-config": "^0.29.7",
+    "@decidim/stylelint-config": "^0.29.7"
   }
 }
