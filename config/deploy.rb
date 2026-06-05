@@ -9,8 +9,6 @@ end
 set :application, "erabaki"
 set :repo_url, "git@github.com:ErabakiPamplona/erabaki.git"
 set :user, deploysecret(:user)
-set :puma_threads,    [4, 16]
-set :puma_workers,    1
 
 # Don't change these unless you know what you're doing
 set :pty,             true
@@ -18,15 +16,22 @@ set :use_sudo,        false
 set :stage,           :production
 set :deploy_via,      :remote_cache
 set :deploy_to,       deploysecret(:deploy_to)
-set :puma_bind,       "unix://#{shared_path}/tmp/sockets/#{fetch(:application)}-puma.sock"
-set :puma_state,      "#{shared_path}/tmp/pids/puma.state"
-set :puma_pid,        "#{shared_path}/tmp/pids/puma.pid"
-set :puma_access_log, "#{release_path}/log/puma.error.log"
-set :puma_error_log,  "#{release_path}/log/puma.access.log"
 set :ssh_options,     { forward_agent: true, user: fetch(:user), keys: %w(~/.ssh/id_rsa.pub) }
-set :puma_preload_app, true
-set :puma_worker_timeout, nil
-set :puma_init_active_record, true  # Change to false when not using ActiveRecord
+
+## Puma / systemd (capistrano3-puma 8)
+set :puma_systemctl_user,    :user
+set :puma_enable_lingering,  false
+set :puma_service_unit_name, -> { "#{fetch(:application)}-puma" }
+set :puma_service_unit_env_vars, -> {
+  [
+    "RAILS_ENV=#{fetch(:puma_env)}",
+    "BUNDLE_GEMFILE=#{current_path}/Gemfile",
+    "PUMA_SHARED_DIR=#{shared_path}",
+    "PUMA_APP_NAME=#{fetch(:application)}"
+  ]
+}
+set :puma_access_log,        -> { "#{shared_path}/log/puma.stdout.log" }
+set :puma_error_log,         -> { "#{shared_path}/log/puma.stderr.log" }
 
 ## Defaults:
 set :scm,           :git
@@ -54,56 +59,6 @@ set :linked_dirs, fetch(:linked_dirs) + %w{public/uploads}
 # Ensure the correct Gemfile is used
 set :bundle_gemfile, -> { release_path.join('Gemfile') }
 
-namespace :puma do
-  desc 'Create Directories for Puma Pids and Socket'
-  task :make_dirs do
-    on roles(:app) do
-      execute "mkdir #{shared_path}/tmp/sockets -p"
-      execute "mkdir #{shared_path}/tmp/pids -p"
-    end
-  end
-
-  desc 'Write correct puma.rb to shared path'
-  task :write_config do
-    on roles(:app) do
-      config = [
-        "threads_count = ENV.fetch(\"RAILS_MAX_THREADS\") { 5 }.to_i",
-        "threads threads_count, threads_count",
-        "environment ENV.fetch(\"RAILS_ENV\") { \"production\" }",
-        "bind \"unix://#{shared_path}/tmp/sockets/#{fetch(:application)}-puma.sock\"",
-        "pidfile \"#{shared_path}/tmp/pids/puma.pid\"",
-        "state_path \"#{shared_path}/tmp/pids/puma.state\"",
-        "activate_control_app",
-        "plugin :tmp_restart"
-      ].join("\n")
-      upload! StringIO.new(config), "#{shared_path}/puma.rb"
-    end
-  end
-
-  desc 'Restart Puma'
-  task :restart do
-    on roles(:app) do
-      execute "kill $(cat #{shared_path}/tmp/pids/puma.pid 2>/dev/null) 2>/dev/null; sleep 3; " \
-              "BUNDLE_GEMFILE=#{current_path}/Gemfile RAILS_ENV=production setsid #{deploysecret(:rvm_wrapper)} bundle exec puma " \
-              "-C #{shared_path}/puma.rb " \
-              ">> #{shared_path}/log/puma.stdout.log " \
-              "2>> #{shared_path}/log/puma.stderr.log < /dev/null &"
-    end
-  end
-
-  desc 'Start Puma'
-  task :start do
-    on roles(:app) do
-      execute "BUNDLE_GEMFILE=#{current_path}/Gemfile RAILS_ENV=production setsid #{deploysecret(:rvm_wrapper)} bundle exec puma " \
-              "-C #{shared_path}/puma.rb " \
-              ">> #{shared_path}/log/puma.stdout.log " \
-              "2>> #{shared_path}/log/puma.stderr.log < /dev/null &"
-    end
-  end
-
-  before :start, :make_dirs
-  before :restart, :write_config
-end
 
 namespace :deploy do
   desc "Make sure local git is in sync with remote."
@@ -125,18 +80,19 @@ namespace :deploy do
     end
   end
 
-  desc 'Restart application'
-  task :restart do
-    on roles(:app), in: :sequence, wait: 5 do
-      invoke 'puma:restart'
+  desc 'Create directories for Puma'
+  task :create_puma_dirs do
+    on roles(:app) do
+      execute "mkdir -p #{shared_path}/tmp/sockets #{shared_path}/tmp/pids"
     end
   end
 
   before :starting,     :check_revision
   after  :finishing,    :compile_assets
   after  :finishing,    :cleanup
-  after  :finishing,    :restart
 end
+
+before 'puma:start', 'deploy:create_puma_dirs'
 
 namespace :deploy do
   desc "Decidim webpacker configuration"
