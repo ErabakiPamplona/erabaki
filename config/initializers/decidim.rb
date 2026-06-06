@@ -11,10 +11,11 @@ Decidim.configure do |config|
   config.jwt_secret = ENV.fetch('SECRET_KEY_BASE')
 
   # Geocoder configuration
-   config.geocoder = {
-     static_map_url: "https://image.maps.hereapi.com/mia/v3/base/mc/overlay",
-     here_api_key: ENV['HERE_API_KEY']
-   }
+   config.maps = {
+    provider: :here,
+    api_key: ENV['HERE_API_KEY'],
+    static: { url: "https://image.maps.hereapi.com/mia/v3/base/mc/overlay" }
+  }
 
   # Currency unit
   # config.currency_unit = "€"
