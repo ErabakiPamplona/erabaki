@@ -2,9 +2,9 @@
   "name": "app",
   "private": true,
   "dependencies": {
-    "@decidim/browserslist-config": "^0.30.9",
-    "@decidim/core": "^0.30.9",
-    "@decidim/webpacker": "^0.30.9",
+    "@decidim/browserslist-config": "^0.31.5",
+    "@decidim/core": "^0.31.5",
+    "@decidim/webpacker": "^0.31.5",
     "autoprefixer": "^10.4.14",
     "compression-webpack-plugin": "^10.0.0",
     "emojibase": "^6.1.0",
@@ -15,7 +15,6 @@
     "postcss-scss": "^4.0.6",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "shakapacker": "~7.1.0",
     "uc.micro": "^2.0.0",
     "webpack-cli": "^5.1.4"
   },
@@ -24,9 +23,10 @@
     "extends @decidim/browserslist-config"
   ],
   "devDependencies": {
-    "@decidim/dev": "^0.30.9",
-    "@decidim/eslint-config": "^0.30.9",
-    "@decidim/prettier-config": "^0.30.9",
-    "@decidim/stylelint-config": "^0.30.9"
+    "@decidim/dev": "^0.31.5",
+    "@decidim/eslint-config": "^0.31.5",
+    "@decidim/prettier-config": "^0.31.5",
+    "@decidim/stylelint-config": "^0.31.5",
+    "shakapacker": "^8.3.0"
   }
 }

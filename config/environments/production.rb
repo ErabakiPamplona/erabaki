@@ -75,8 +75,8 @@ Rails.application.configure do
     arguments: ['-i']
   }
   config.action_mailer.smtp_settings = {
-    :address        => Rails.application.secrets.smtp_address,
-    :port           => Rails.application.secrets.smtp_port,
+    :address        => ENV['SMTP_ADDRESS'],
+    :port           => ENV['SMTP_PORT'] || '587',
 #    :authentication => Rails.application.secrets.smtp_authentication,
 #    :user_name      => Rails.application.secrets.smtp_username,
 #    :password       => Rails.application.secrets.smtp_password,
@@ -91,10 +91,10 @@ Rails.application.configure do
     :deliver_with => :deliver, # Rails >= 4.2.1 do not need this option since it defaults to :deliver_now
     :email_prefix => "[Decide Pamplona] ",
     :sender_address => %{"notifier" <decide@pamplona.es>},
-    :exception_recipients => Rails.application.secrets.smtp_exception
+    :exception_recipients => ENV['SMTP_EXCEPTION']
   }
 
-  if Rails.application.secrets.sendgrid
+  if ENV['SENDGRID_USERNAME'].present?
     config.action_mailer.default_options = {
       "X-SMTPAPI" => {
         filters:  {

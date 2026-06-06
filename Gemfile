@@ -2,12 +2,14 @@ source "https://rubygems.org"
 
 ruby '3.3.4'
 
-DECIDIM_VERSION = "0.30.9"
+DECIDIM_VERSION = "0.31.5"
 
 
 gem "decidim", DECIDIM_VERSION
 
 gem 'puma', '>= 5.0.0'
+gem 'data_migrate'
+gem 'dotenv-rails', groups: [:production]
 gem 'uglifier', '~> 4.0'
 gem 'faker'
 gem 'exception_notification'
