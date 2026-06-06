@@ -8,6 +8,8 @@ Decidim.configure do |config|
   config.available_locales = %i{es eu}
   config.default_locale = :es
 
+  config.jwt_secret = ENV.fetch('SECRET_KEY_BASE')
+
   # Geocoder configuration
    config.geocoder = {
      static_map_url: "https://image.maps.hereapi.com/mia/v3/base/mc/overlay",
