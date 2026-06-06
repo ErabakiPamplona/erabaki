@@ -6,6 +6,7 @@ DECIDIM_VERSION = "0.31.5"
 
 
 gem "decidim", DECIDIM_VERSION
+gem "decidim-elections", DECIDIM_VERSION
 
 gem 'puma', '>= 5.0.0'
 gem 'data_migrate'
