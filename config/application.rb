@@ -17,6 +17,7 @@ module Erabaki
     # -- all .rb files in that directory are automatically loaded.
     config.time_zone = "Europe/Madrid"
     config.load_defaults 7.2
+    config.active_storage.variant_processor = :mini_magick
 
     # Locales
     config.i18n.available_locales = %w(es eu)
