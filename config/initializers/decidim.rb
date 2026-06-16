@@ -29,6 +29,10 @@ Decidim::Verifications.register_workflow(:census_authorization_handler) do |auth
   auth.form = "CensusAuthorizationHandler"
 end
 
+Decidim::Verifications.register_workflow(:buztintxuri_authorization_handler) do |auth|
+  auth.form = "BuztintxuriAuthorizationHandler"
+end
+
 # Inform Decidim about the assets folder
 Decidim.register_assets_path File.expand_path("app/packs", Rails.application.root)
 

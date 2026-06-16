@@ -12,6 +12,11 @@ es:
     invalid_postal_code: Código postal invalido
     invalid_date_of_birth: Fecha de nacimiento invalida
     invalid_something: Ha ocurrido algún error, contacte con participacionciudadana@pamplona.es
+  buztintxuri_authorization_handler:
+    invalid_document: Documento de identidad invalido
+    invalid_postal_code: Código postal invalido
+    invalid_date_of_birth: Fecha de nacimiento invalida
+    invalid_something: Ha ocurrido algún error, contacte con participacionciudadana@pamplona.es
   census_authorization:
     form:
       scope_prompt: Por favor, selecciona tu distrito
@@ -19,6 +24,16 @@ es:
         day: "Día"
         month: "Mes"
         year: "Año"
+  buztintxuri_authorization:
+    form:
+      date_select:
+        day: "Día"
+        month: "Mes"
+        year: "Año"
+      data_protection_html: |
+        <p><strong>Protección de datos</strong></p>
+        <p>El Ayuntamiento de Pamplona es el responsable de tratamiento de los datos personales que serán utilizados para la gestión de la participación ciudadana en el proceso de presupuestos participativos y verificación del cumplimiento de los requisitos de participación mediante consulta al padrón municipal. Puede ejercer los derechos de acceso, rectificación, supresión, limitación u otros reconocidos por la normativa de protección de datos dirigiéndose al Registro General (C/ Mayor 2, Pamplona) o a la sede electrónica.</p>
+        <p>Más información: <a href="https://www.pamplona.es" target="_blank" rel="noopener">Política de Protección de Datos</a></p>
   activemodel:
     attributes:
       census_authorization_handler:
@@ -27,11 +42,24 @@ es:
         postal_code: Código postal
         date_of_birth: Fecha de nacimiento
         scope_id: Distrito desde el que desea participar
+      buztintxuri_authorization_handler:
+        document_number: Número de documento
+        document_type: Tipo de documento
+        postal_code: Código postal
+        date_of_birth: Fecha de nacimiento
   decidim:
     authorization_handlers:
       census_authorization_handler:
         name: "registro del Padrón"
+      buztintxuri_authorization_handler:
+        name: "Empadronamiento en Buztintxuri"
+        explanation: "Verifícate como empadronado/a en Buztintxuri"
     census_authorization_handler:
+        document_types:
+          dni: "DNI"
+          nie: "NIE"
+          passport: "Pasaporte"
+    buztintxuri_authorization_handler:
         document_types:
           dni: "DNI"
           nie: "NIE"
