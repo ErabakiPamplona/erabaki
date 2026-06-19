@@ -31,6 +31,7 @@ end
 
 Decidim::Verifications.register_workflow(:buztintxuri_authorization_handler) do |auth|
   auth.form = "BuztintxuriAuthorizationHandler"
+  auth.ephemeral = true
 end
 
 # Inform Decidim about the assets folder
