@@ -73,6 +73,12 @@ class BuztintxuriAuthorizationHandler < Decidim::AuthorizationHandler
     respuesta = response["respuesta"]
     codiError = response["codigoError"]
 
+    begin
+      Rails.logger.info("[CENSUS_VERIFY] resp=#{respuesta.inspect} cod=#{codiError.inspect} cp=#{postal_code.inspect} tipo=#{document_type.inspect} uid=#{unique_id.inspect}")
+    rescue StandardError => e
+      Rails.logger.error("[CENSUS_VERIFY] logging failed: #{e.class}: #{e.message}")
+    end
+
     return nil if respuesta == true || respuesta == "true"
 
     case codiError
